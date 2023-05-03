@@ -1,0 +1,233 @@
+@font-face {
+    font-family: "Gilroy-Bold";
+    src: url("./../../Assets/font/Gilroy-font/Gilroy-Bold.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Gilroy-Light";
+    src: url("./../../Assets/font/Gilroy-font/Gilroy-Light.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Gilroy-Regular";
+    src: url("./../../Assets/font/Gilroy-font/Gilroy-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Gilroy-Medium";
+    src: url("./../../Assets/font/Gilroy-font/Gilroy-Medium.ttf") format("truetype");
+  }
+  /* body {
+    background-color: black;
+  } */
+  
+  .loginContainer {
+    background-color: #1b1b1b;
+    position: absolute;
+    width: 400px;
+    height: 620px;
+    left: 120px;
+    right: 250px;
+    top: 20px;
+    border-radius: 40px;
+  }
+  
+  .mainContainer {
+    position: absolute;
+    width: 600px;
+    height: 655px;
+    left: 765px;
+    top: 0px;
+    background-color: #161616;
+  }
+  
+  .loginWelcomeContainer {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+  }
+  .loginSelamatDatangTXT {
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+    font-family: "Gilroy-Light";
+  }
+  .loginMasukKeAkunAndaTXT {
+    font-size: 25px;
+    line-height: 35px;
+    color: #37b25a;
+    text-shadow: 0px 4px 14px rgba(69, 220, 111, 0.2);
+    font-family: "Gilroy-Bold";
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+  }
+  
+  .login-form label {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 3px;
+    color: #ffffff;
+    font-family: "Gilroy-Regular";
+    line-height: 19px;
+    font-size: 16px;
+  }
+  .login-form input {
+    padding: 20px 20px 20px 18px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 300px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  .login-form input::placeholder {
+    font-family: "Gilroy-Regular";
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .password-input-wrapper input {
+    padding: 20px 20px 20px 18px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 300px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  .password-input-wrapper svg {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .check-and-forgotpass {
+    margin-top: -5px;
+    display: flex;
+    flex-direction: row;
+    gap: 97px;
+  }
+  
+  .check-and-forgotpass p {
+    color: #35aa56;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Gilroy-Medium";
+  }
+  
+  .check-and-forgotpass input {
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    border: none;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    background-color: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+  }
+  .check-and-forgotpass:hover input ~ .checkmark {
+    background-color: #000;
+  }
+  
+  .check-and-forgotpass input:checked ~ .checkmark {
+    background-color: #1e1e1e;
+  }
+  .checkmark:after {
+    content: "";
+    display: none;
+  }
+  .check-and-forgotpass input:checked ~ .checkmark:after {
+    display: flex;
+  }
+  .check-and-forgotpass .checkmark:after {
+    margin-left: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #52be52;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .check-and-forgotpass label {
+    display: flex;
+    align-items: center;
+    font-family: "Gilroy-Regular";
+    font-size: 14px;
+    line-height: 16px;
+    color: #ffffff;
+  }
+  
+  .masuk-button {
+    background: linear-gradient(90deg, #45dc6f 0%, #35aa56 100%);
+    box-shadow: 0px 4px 14px rgba(69, 220, 111, 0.2);
+    border-radius: 15px;
+    padding: 18px;
+    color: #ffffff;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  .masuk-button:hover {
+    background-color: #45dc6f; /* warna background saat hover */
+    color: #ffffff; /* warna teks saat hover */
+    border-color: #45dc6f; /* border saat hover */
+  }
+  .masuk-button:active {
+    background-color: #35aa56; /* warna background saat di-click */
+    color: #ffffff; /* warna teks saat di-click */
+    border-color: #35aa56; /* border saat di-click */
+  }
+  .separator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .separator-line {
+    flex: 1;
+    height: 1px;
+    margin: 0 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  
+  .separator-text {
+    font-family: "Gilroy-Regular";
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .daftar-button {
+    border: 2px solid #45dc6f;
+    filter: drop-shadow(0px 4px 14px rgba(69, 220, 111, 0.2));
+    border-radius: 15px;
+    color: #ffffff;
+    padding: 18px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .daftar-button:hover {
+    background-color: #45dc6f; /* warna background saat hover */
+    color: #ffffff; /* warna teks saat hover */
+    border-color: #45dc6f; /* border saat hover */
+  }
+  .daftar-button:active {
+    background-color: #35aa56; /* warna background saat di-click */
+    color: #ffffff; /* warna teks saat di-click */
+    border-color: #35aa56; /* border saat di-click */
+  }
+  
