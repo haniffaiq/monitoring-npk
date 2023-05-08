@@ -28,14 +28,14 @@ function Homepage(props) {
     function Content() {
 
         return (
-            <div className="grid grid-flow-row-dense grid-rows-2 gap-4 md:py-10">
-                <div className="grid grid-flow-row-dense grid-cols-3 gap-4 md:py-10">
+            <div className="grid grid-flow-row-dense grid-rows-2 gap-1 md:py-10">
+                <div className="grid grid-flow-row-dense grid-cols-3 gap-1 md:py-5 md:px-5">
                     {/* Box Kiri */}
-                    <div className="p-6 col-span-2 grid grid-flow-row auto-rows-max gap-3 ">
+                    <div className="p-6 col-span-2 grid grid-flow-row auto-rows-max gap-3 mr-10">
                         <p className="text1 ">Tugas Akhir Capstone</p>
-                        <p className="text2">SISTEM CERDAS MONITORING <br /> UNSUR HARA NPK TANAH PORTABLE <br /> UNTUK TANAMAN CABAI BERBASIS IOT</p>
-                        <p className="text3 ">Website yang memungkinkan pengguna untuk memantau kadar unsur hara Nitrogen (N), Fosfor (P), Kalium (K), pH dan <br /> kelembapan pada tanah secara real-time dan portabel dengan bantuan Internet of Things (IoT).</p>
-                        <div className="grid grid-cols-2 gap-4 md:my-20">
+                        <p className="text2">SISTEM CERDAS MONITORING UNSUR HARA NPK TANAH PORTABLE UNTUK TANAMAN CABAI BERBASIS IOT</p>
+                        <p className="text3 ">Website yang memungkinkan pengguna untuk memantau kadar unsur hara Nitrogen (N), Fosfor (P), Kalium (K), pH dan kelembapan pada tanah secara real-time dan portabel dengan bantuan Internet of Things (IoT).</p>
+                        <div className="grid grid-cols-2 gap-4 laptop:my-20">
                             <div className="col-span-1 ">
                                 <Member imageSrc={MemberProfile1} name="Ananda Mutiara Prabowo" position="1101190330" />
                             </div>
@@ -51,8 +51,8 @@ function Homepage(props) {
                         </div>
                     </div>
                     {/* Box Kanan */}
-                    <div className="flex justify-center  ">
-                        <img alt="Cabai Image" className="w-full h-auto image-custom" src={Cabai} />
+                    <div className="flex justify-center py-10">
+                        <img alt="Cabai Image" className="w-auto h-auto image-custom" src={Cabai} />
                     </div>
                 </div>
                 <NPKChart />
@@ -69,7 +69,7 @@ function Homepage(props) {
         );
     }
     return (
-        <div className=" mx-20 my-10">
+        <div className="md:mx-10">
             <Header />
             <Content />
             <Footer />

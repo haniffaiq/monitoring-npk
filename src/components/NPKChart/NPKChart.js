@@ -169,7 +169,7 @@ function NPKChart(props) {
             </div>
             <div className="grid grid-cols-5 gap-4">
                 <div>
-                    {/* TO DO */}
+                    <p className='text-grafik'>Grafik Hasil Pengamatan</p>
                 </div>
                 <div>
                     {/* TO DO */}
