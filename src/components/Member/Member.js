@@ -6,7 +6,7 @@ function Member(props) {
             <img className="w-12 h-12 rounded-full" alt="Foto Member" src={props.imageSrc}/>
             <div>
                 <p className="font-medium text-white">{props.name}</p>
-                {/* <p className="text-white">{props.position}</p> */}
+                <p className="text-white">{props.position}</p>
             </div>
         </div>
     );
