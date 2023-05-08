@@ -51,7 +51,7 @@ function Homepage(props) {
                         </div>
                     </div>
                     {/* Box Kanan */}
-                    <div className="flex justify-center p-6 ">
+                    <div className="flex justify-center  ">
                         <img alt="Cabai Image" className="w-full h-auto image-custom" src={Cabai} />
                     </div>
                 </div>
@@ -69,7 +69,7 @@ function Homepage(props) {
         );
     }
     return (
-        <div className=" md:mx-20 md:my-10">
+        <div className=" mx-20 my-10">
             <Header />
             <Content />
             <Footer />
