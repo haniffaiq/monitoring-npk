@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "Gilroy-Bold";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-Light";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-Medium";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Medium.ttf") format("truetype");
+}
+.main-container {
+  margin-top: 50px;
+}
+.countdown-txt {
+  font-family: "Gilroy-Medium";
+  font-size: 55px;
+  line-height: 64px;
+  color: #45dc6f;
+  text-shadow: 0px 4px 14px rgba(69, 220, 111, 0.2);
+}
+
+.countdown-txt-container {
+  width: 189px;
+  height: -60px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.jam-img {
+  width: 40px;
+  height: 40px;
+}
+.countdown-txt-1 {
+  font-family: "Gilroy-Regular";
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+}
+.countdown-txt-1 span {
+  color: #45dc6f;
+}
+/* mergingan css */
+.highlight-graph-container {
+  width: 770px;
+  height: 408px;
+  background-color: #1b1b1b;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  border-radius: 35px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.highlight-graph-container p {
+  color: aliceblue;
+}
+.countdown-container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  background: #1b1b1b;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  border-radius: 35px;
+  height: 80px;
+  width: 489px;
+  padding: 60px 30px 60px 30px;
+  left: 840px;
+  position: absolute;
+}
+
+.gambar-container {
+  width: 500px;
+  height: 266px;
+}
+.cabeijo-img {
+  width: 500px;
+  height: 280px;
+}
+.biarfixed {
+  position: absolute;
+  left: 245px;
+  bottom: 29px;
+}
