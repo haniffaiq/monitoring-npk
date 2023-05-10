@@ -4,16 +4,16 @@ import Member from "../../components/Member/Member";
 import NPKChart from "./../../components/NPKChart";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Countdown from "../../components/Countdown/Countdown";
-import CalendarComponents from "../../components/Calendar/Calendar";
 
 import MemberProfile1 from "./../../Assets/images/Profile.webp";
 import Cabai from "./../../Assets/images/cabai.webp";
 import Logo from "./../../Assets/images/Logo Tsuki.png";
+import ProgressBar from "../../components/ProgressBar/ProgressBar";
 
 function Homepage(props) {
   function Header() {
     return (
-      <div className="flex justify-between  text-white py-4">
+      <div className="flex justify-between text-white py-4">
         <div className="flex h-16 px-10 py-5">
           <img alt="Cabai Image" className="w-full h-auto" src={Logo} />
         </div>
@@ -58,7 +58,6 @@ function Homepage(props) {
         <NPKChart />
 
         <Countdown />
-        <CalendarComponents />
       </div>
     );
   }

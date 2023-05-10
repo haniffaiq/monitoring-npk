@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import Jam from "./../../Assets/images/jam.png";
 import CabeIjo from "./../../Assets/images/cabeijo.png";
+import ProgressBar from "../../components/ProgressBar/ProgressBar";
+
 function Countdown() {
   const [timeLeft, setTimeLeft] = useState(30 * 60); // waktu dalam detik
 
@@ -20,10 +22,25 @@ function Countdown() {
     return `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`;
   }
 
+  const [countdown, setCountdown] = useState(1800);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountdown(countdown - 1);
+    }, 1000);
+
+    if (countdown === 0) {
+      clearInterval(interval);
+      window.location.reload();
+    }
+
+    return () => clearInterval(interval);
+  }, [countdown]);
+
   return (
     <div class="grid grid-rows-3 grid-flow-col gap-4 main-container">
       <div class="highlight-graph-container row-span-3 ...">
-        <p>ini container graph highlight</p>
+        <ProgressBar />
       </div>
       <div class="col-span-2 ...">
         <div className="countdown-container">

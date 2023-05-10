@@ -17,6 +17,7 @@ module.exports = {
       'Kalium': '#FFA9A9',
       'pH': '#AF9BFF',
       'Kelembapan': '#FF835C',
+      'Base1': '#232323'
      })
   },
 
