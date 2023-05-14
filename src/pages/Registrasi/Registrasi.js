@@ -34,7 +34,7 @@ function Registrasi(props) {
             <label htmlFor="input-email">Email</label>
             <input type="text" id="input-email" placeholder="yourname@gmail.com" />
             <label htmlFor="input-password">Password</label>
-            <div className="password-input-wrapper">
+            <div className="password-input-wrapper-regist">
               <input type={showPassword ? "text" : "password"} id="input-password" placeholder="Minimal 8 Karakter" />
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} onClick={togglePasswordVisibility} />
             </div>

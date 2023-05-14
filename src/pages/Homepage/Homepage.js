@@ -4,6 +4,7 @@ import Member from "../../components/Member/Member";
 import NPKChart from "./../../components/NPKChart";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Countdown from "../../components/Countdown/Countdown";
+import CalendarComponents from "../../components/Calendar/Calendar";
 
 import MemberProfile1 from "./../../Assets/images/Profile.webp";
 import Cabai from "./../../Assets/images/cabai.webp";
@@ -26,10 +27,10 @@ function Homepage(props) {
   }
   function Content() {
     return (
-      <div className="grid grid-flow-row-dense grid-rows-2 gap-1 md:py-10">
+      <div className="grid grid-flow-row-dense gap-1 md:py-10">
         <div className="grid grid-flow-row-dense grid-cols-3 gap-1 md:py-5 md:px-5">
           {/* Box Kiri */}
-          <div className="p-6 col-span-2 grid grid-flow-row auto-rows-max gap-3 mr-10">
+          <div className="p-6 col-span-2 grid grid-flow-row auto-rows-max gap-2 mr-10">
             <p className="text1 ">Tugas Akhir Capstone</p>
             <p className="text2">SISTEM CERDAS MONITORING UNSUR HARA NPK TANAH PORTABLE UNTUK TANAMAN CABAI BERBASIS IOT</p>
             <p className="text3 ">
@@ -56,8 +57,8 @@ function Homepage(props) {
           </div>
         </div>
         <NPKChart />
-
         <Countdown />
+        <CalendarComponents />
       </div>
     );
   }
