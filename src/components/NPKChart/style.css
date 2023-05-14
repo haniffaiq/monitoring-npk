@@ -1,3 +1,17 @@
-.card-container{
+.card-container {
     background-color: #1B1B1B;
+}
+
+.text-grafik {
+    font-family: 'Gilroy-Regular';
+    font-style: normal;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.text-name {
+    font-family: 'Gilroy-Regular';
+    font-size: 0.75rem;
+    line-height: 1rem;
 }

@@ -109,12 +109,10 @@ function NPKChart(props) {
                 <div>
                     {/* TO DO */}
                 </div>
-                <div>
-                    {/* TO DO */}
-                </div>
-                <div className="grid grid-cols-5 gap-2 col-span-2">
+
+                <div className="grid grid-cols-5 gap-2 col-span-3">
                     <button
-                        className="bg-gray-700 text-white px-4 py-2 rounded-full inline-flex items-center  max-h-8"
+                        className="bg-gray-700 text-white px-4 py-2 rounded-full inline-flex items-center max-h-8 "
                         onClick={() => {
                             SetGraphChoose('Nitrogen')
                             SetColorLine("#38ACFF")
@@ -122,7 +120,7 @@ function NPKChart(props) {
                     >
 
                         <span class="w-2 h-2 rounded-full mr-2 bg-Nitrogen"></span>
-                        <p className='text-xs'>Nitrogen</p>
+                        <p className='text-name'>Nitrogen</p>
                     </button>
                     <button
                         className="bg-gray-700 text-white px-4 py-2 rounded-full inline-flex items-center  max-h-8"
@@ -132,7 +130,7 @@ function NPKChart(props) {
                         }}
                     >
                         <span class="w-2 h-2 rounded-full mr-2 bg-Pospor"></span>
-                        <p className='text-xs'>Pospor</p>
+                        <p className='text-name'>Pospor</p>
                     </button>
                     <button
                         className="bg-gray-700 text-white px-4 py-2 rounded-full inline-flex items-center  max-h-8"
@@ -142,7 +140,7 @@ function NPKChart(props) {
                         }}
                     >
                         <span class="w-2 h-2 rounded-full mr-2 bg-Kalium"></span>
-                        <p className='text-xs'>Kalium</p>
+                        <p className='text-name'>Kalium</p>
                     </button>
                     <button
                         className="bg-gray-700 text-white px-4 py-2 rounded-full inline-flex items-center max-h-8"
@@ -152,7 +150,7 @@ function NPKChart(props) {
                         }}
                     >
                         <span class="w-2 h-2 rounded-full mr-2 bg-pH"></span>
-                        <p className='text-xs'>pH</p>
+                        <p className='text-name'>pH</p>
                     </button>
                     <button
                         className="bg-gray-700 text-white px-4 py-2 rounded-full inline-flex items-center justify-center max-h-8 "
@@ -162,14 +160,14 @@ function NPKChart(props) {
                         }}
                     >
                         <span class="w-2 h-2 rounded-full mr-2 bg-Kelembapan"></span>
-                        <p className='text-xs'>Kelembapan</p>
+                        <p className='text-name'>Kelembapan</p>
                     </button>
                 </div>
 
             </div>
             <div className="grid grid-cols-5 gap-4">
                 <div>
-                    {/* TO DO */}
+                    <p className='text-grafik'>Grafik Hasil Pengamatan</p>
                 </div>
                 <div>
                     {/* TO DO */}

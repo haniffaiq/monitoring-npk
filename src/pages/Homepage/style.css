@@ -1,60 +1,65 @@
 @font-face {
-    font-family: "Gilroy-Bold";
-    src: url("./../../Assets/font/Gilroy-font/Gilroy-Bold.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Gilroy-Light";
-    src: url("./../../Assets/font/Gilroy-font/Gilroy-Light.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Gilroy-Regular";
-    src: url("./../../Assets/font/Gilroy-font/Gilroy-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Gilroy-Medium";
-    src: url("./../../Assets/font/Gilroy-font/Gilroy-Medium.ttf") format("truetype");
-  }
-  
-
-.container{
-    background-color: aliceblue;
+  font-family: "Gilroy-Bold";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-Light";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-Medium";
+  src: url("./../../Assets/font/Gilroy-font/Gilroy-Medium.ttf") format("truetype");
 }
 
-.image-custom{
-    border-radius: 190px 40px 190px 0px;
-    width: 600px;
-    height: 486px;
-
+.container {
+  background-color: aliceblue;
 }
 
-.text2{
-    font-family: 'Chivo Mono', monospace;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 50px;
-    line-height: 60px;
-    color: #45DC6F;
+.image-custom {
+  border-radius: 190px 40px 190px 0px;
+  max-width: 100%;
+  height: auto;
+  margin-right: 10%;
 }
 
-.text1{
-    font-family: 'Gilroy-Medium';
-    font-style: normal;
-    color: #FFFFFF;
-    font-size: 24px;
-    line-height: 28px;
-
-}
-.text3{
-    font-family: 'Gilroy-Regular';
-    font-style: normal;
-    color: #FFFFFF;
-    font-size: 16px;
-    line-height: 26px;
+.text2 {
+  font-family: "Chivo Mono", monospace;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 300%;
+  line-height: 100%;
+  color: #45dc6f;
 }
 
-.copyright{
-    font-family: 'Gilroy-Regular';
-    font-size: 16px;
-    line-height: 25px;
-    color: rgba(238, 238, 238, 0.5);
+.text1 {
+  font-family: "Gilroy-Medium";
+  font-style: normal;
+  color: #ffffff;
+  font-size: 24px;
+}
+.text3 {
+  font-family: "Gilroy-Regular";
+  font-style: normal;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.copyright {
+  font-family: "Gilroy-Regular";
+  font-size: 16px;
+  line-height: 25px;
+  color: rgba(238, 238, 238, 0.5);
+}
+
+.text-member{
+  font-family: 'Gilroy-Regular';
+  font-style: normal;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 26px;
 }
