@@ -20,28 +20,34 @@
    */
 .registrasiContainer {
   background-color: #1b1b1b;
-  position: absolute;
   width: 450px;
   height: 620px;
-  left: 90px;
-  right: 250px;
-  top: 20px;
   border-radius: 40px;
 }
 
+.ilust-img {
+  width: 850px;
+  height: 570px;
+  margin-left: 20px;
+}
+
 .mainContainer {
-  position: absolute;
-  width: 600px;
-  height: 655px;
-  left: 765px;
-  top: 0px;
   background-color: #161616;
+  background-image: url("../../Assets/images/bg_batik.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 1300px;
+  height: 655px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  display: flex;
 }
 
 .registrasiWelcomeContainer {
-  position: absolute;
-  left: 50px;
-  top: 50px;
+  position: relative;
+  margin-left: 50px;
+  margin-top: 50px;
 }
 .registrasiSelamatDatangTXT {
   font-size: 16px;
@@ -147,7 +153,7 @@
   margin-top: -5px;
   display: flex;
   flex-direction: row;
-  gap: 128px;
+  gap: 120px;
 }
 
 .punya-akun-txt-layout {
@@ -156,7 +162,7 @@
   gap: 2px;
 }
 
-.have-acc-txt {
+.have-acc-txt-regist {
   color: #ffffff;
   margin-top: 20px;
   font-size: 14px;
@@ -220,11 +226,11 @@
 }
 
 .masuk-button {
-  background: linear-gradient(90deg, #45dc6f 0%, #35aa56 100%);
-  box-shadow: 0px 4px 14px rgba(69, 220, 111, 0.2);
+  border: 2px solid #45dc6f;
+  filter: drop-shadow(0px 4px 14px rgba(69, 220, 111, 0.2));
   border-radius: 15px;
-  padding: 18px;
   color: #ffffff;
+  padding: 18px;
   margin-top: 20px;
   transition: all 0.3s ease-in-out;
 }

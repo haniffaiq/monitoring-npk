@@ -3,6 +3,7 @@ import "./style.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Ilust from "../../Assets/images/ilust.png";
 
 function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,11 +14,15 @@ function Login(props) {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
-  const handleClick = () => {
+  const handleClick1 = () => {
+    console.log("Button clicked!");
+  };
+  const handleClick2 = () => {
     console.log("Button clicked!");
   };
   return (
     <div className="mainContainer">
+      <img src={Ilust} className="ilust-img" />
       <div className="loginContainer">
         <div className="loginWelcomeContainer">
           <p className="loginSelamatDatangTXT">Selamat Datang</p>
@@ -30,7 +35,7 @@ function Login(props) {
               <input type={showPassword ? "text" : "password"} id="input-password" placeholder="Minimal 8 Karakter" />
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} onClick={togglePasswordVisibility} />
             </div>
-            <div className="check-and-forgotpass">
+            <div className="check-and-forgotpass-login">
               <label>
                 <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
                 <span class="checkmark"></span>
@@ -38,7 +43,7 @@ function Login(props) {
               </label>
               <p>Lupa Password?</p>
             </div>
-            <button onClick={handleClick} className="masuk-button">
+            <button onClick={handleClick1} className="masuk-button-login">
               Masuk
             </button>
             <div className="separator-container">
@@ -46,7 +51,7 @@ function Login(props) {
               <span className="separator-text">Atau</span>
               <hr className="separator-line" />
             </div>
-            <button onClick={handleClick} className="daftar-button">
+            <button onClick={handleClick2} className="daftar-button">
               Daftar
             </button>
           </div>

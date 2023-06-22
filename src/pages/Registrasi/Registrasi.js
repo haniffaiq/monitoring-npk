@@ -3,6 +3,7 @@ import "./style.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Ilust from "../../Assets/images/ilust.png";
 
 function Registrasi(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,7 @@ function Registrasi(props) {
   };
   return (
     <div className="mainContainer">
+      <img src={Ilust} className="ilust-img" />
       <div className="registrasiContainer">
         <div className="registrasiWelcomeContainer">
           <p className="registrasiSelamatDatangTXT">Selamat Datang</p>
@@ -45,7 +47,7 @@ function Registrasi(props) {
                 Ingat saya
               </label>
               <div className="punya-akun-txt-layout">
-                <p style={{ color: "#ffff" }}>Punya akun?</p>
+                <p className="have-acc-txt-regist">Punya akun?</p>
                 <p className="txt-2">Masuk</p>
               </div>
             </div>
