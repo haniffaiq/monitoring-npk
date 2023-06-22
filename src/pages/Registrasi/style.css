@@ -20,9 +20,10 @@
    */
 .registrasiContainer {
   background-color: #1b1b1b;
-  width: 450px;
-  height: 620px;
+  width: 500px;
+  height: 680px;
   border-radius: 40px;
+  margin-bottom: 20px;
 }
 
 .ilust-img {
@@ -37,8 +38,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 1300px;
-  height: 655px;
+  width: 1480px;
+  height: 735px;
   align-items: flex-end;
   justify-content: flex-end;
   display: flex;
@@ -66,19 +67,21 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 160px;
+  top: 190px;
 }
 .regist-name {
   display: flex;
   flex-direction: row;
   position: absolute;
-  top: 100px;
+  top: 120px;
   gap: 20px;
+  
 }
 .regist-label-name {
   display: flex;
   flex-direction: row;
   gap: 80px;
+ 
 }
 .regist-label-name label {
   margin-top: 18px;
@@ -95,7 +98,7 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: #1e1e1e;
   color: #ffffff;
-  width: 165px;
+  width: 200px;
 }
 
 .regist-name input::placeholder {
@@ -118,7 +121,7 @@
   padding: 20px 20px 20px 18px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  width: 355px;
+  width: 422px;
   background-color: #1e1e1e;
   color: #ffffff;
 }
@@ -139,7 +142,7 @@
   padding: 20px 20px 20px 18px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  width: 355px;
+  width: 422px;
   background-color: #1e1e1e;
   color: #ffffff;
 }
@@ -153,7 +156,7 @@
   margin-top: -5px;
   display: flex;
   flex-direction: row;
-  gap: 120px;
+  gap: 195px;
 }
 
 .punya-akun-txt-layout {

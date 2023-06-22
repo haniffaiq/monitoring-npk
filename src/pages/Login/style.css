@@ -20,19 +20,21 @@
 
 .loginContainer {
   background-color: #1b1b1b;
-  width: 450px;
-  height: 620px;
+  width: 500px;
+  height: 680px;
   border-radius: 40px;
+  margin-bottom: 20px;
+ 
 }
 
-.mainContainer {
+.mainContainerLogin {
   background-color: #161616;
   background-image: url("../../Assets/images/bg_batik.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 1300px;
-  height: 655px;
+  width: 1480px;
+  height: 735px;
   align-items: flex-end;
   justify-content: flex-end;
   display: flex;
@@ -40,7 +42,7 @@
 
 .loginWelcomeContainer {
   position: relative;
-  margin-left: 80px;
+  margin-left: 55px;
   margin-top: 50px;
 }
 .loginSelamatDatangTXT {
@@ -76,7 +78,7 @@
   padding: 20px 20px 20px 18px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  width: 300px;
+  width: 406px;
   background-color: #1e1e1e;
   color: #ffffff;
 }
@@ -111,7 +113,7 @@
   margin-top: -5px;
   display: flex;
   flex-direction: row;
-  gap: 97px;
+  gap: 200px;
 }
 
 .check-and-forgotpass-login p {
@@ -177,6 +179,7 @@
   color: #ffffff;
   padding: 18px;
   margin-top: 20px;
+  margin-bottom: -20px;
   transition: all 0.3s ease-in-out;
 }
 .masuk-button-login:hover {
@@ -193,7 +196,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  /* margin-top: 15px; */
   margin-bottom: 15px;
 }
 

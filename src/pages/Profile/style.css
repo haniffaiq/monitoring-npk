@@ -87,11 +87,13 @@
   width: 420px;
   height: 37px;
 }
-.regist-name {
+.regist-name-profile {
   display: flex;
   flex-direction: row;
   gap: 20px;
   margin-left: -5px;
+  margin-top: 10px;
+  
 }
 .regist-label-name {
   display: flex;
@@ -101,15 +103,15 @@
   margin-bottom: 9px;
 }
 .regist-label-name label {
-  margin-top: 18px;
-  bottom: 13px;
+  /* margin-top: 18px;
+  bottom: 13px; */
 
   color: #ffffff;
   font-family: "Gilroy-Regular";
   line-height: 19px;
   font-size: 14px;
 }
-.regist-name input {
+.regist-name-profile input {
   border-radius: 15px;
   padding: 20px 20px 20px 18px;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -118,7 +120,7 @@
   width: 200px;
   height: 66px;
 }
-.regist-name input::placeholder {
+.regist-name-profile input::placeholder {
   font-family: "Gilroy-Regular";
   font-size: 14px;
   line-height: 16px;
@@ -159,7 +161,7 @@
   font-size: 14px;
 }
 .password-profile-container {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .confirm-pass-container {
   margin-top: 5px;
