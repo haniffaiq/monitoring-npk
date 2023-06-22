@@ -1,11 +1,23 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Ilust from "../../Assets/images/ilust.png";
+import { Link } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, push, set } from "firebase/database";
+
+import firebaseConfig from "../../Firebase";
 
 function Registrasi(props) {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const togglePasswordVisibility = () => {
@@ -14,7 +26,31 @@ function Registrasi(props) {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
-  const handleClick = () => {
+  const handleRegistrasiClick = () => {
+    const database = getDatabase();
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const userId = user.uid;
+
+        // Simpan data pengguna di Firebase Realtime Database
+        const userRef = ref(database, "users/" + userId);
+        // const newUserRef = push(userRef);
+        const userData = {
+          userId: userId,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+        };
+        set(userRef, userData);
+
+        console.log("Registrasi berhasil. ID pengguna:", userId);
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log("Error saat registrasi:", error.message);
+      });
     console.log("Button clicked!");
   };
   return (
@@ -29,15 +65,15 @@ function Registrasi(props) {
             <label htmlFor="input-email">Nama Belakang</label>
           </div>
           <div className="regist-name">
-            <input type="text" id="input-email" placeholder="Nama Depan" />
-            <input type="text" id="input-email" placeholder="Nama Belakang" />
+            <input type="text" id="input-nama-depan" placeholder="Nama Depan" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+            <input type="text" id="input-nama-belakang" placeholder="Nama Belakang" value={lastName} onChange={(e) => setLastName(e.target.value)} />
           </div>
           <div className="registrasi-form">
             <label htmlFor="input-email">Email</label>
-            <input type="text" id="input-email" placeholder="yourname@gmail.com" />
+            <input type="text" id="input-email" placeholder="yourname@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
             <label htmlFor="input-password">Password</label>
             <div className="password-input-wrapper-regist">
-              <input type={showPassword ? "text" : "password"} id="input-password" placeholder="Minimal 8 Karakter" />
+              <input type={showPassword ? "text" : "password"} id="input-password" placeholder="Minimal 6 Karakter" value={password} onChange={(e) => setPassword(e.target.value)} />
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} onClick={togglePasswordVisibility} />
             </div>
             <div className="check-and-forgotpass">
@@ -48,10 +84,12 @@ function Registrasi(props) {
               </label>
               <div className="punya-akun-txt-layout">
                 <p className="have-acc-txt-regist">Punya akun?</p>
-                <p className="txt-2">Masuk</p>
+                <p className="txt-2">
+                  <Link to="/login">Masuk</Link>
+                </p>
               </div>
             </div>
-            <button onClick={handleClick} className="masuk-button">
+            <button onClick={handleRegistrasiClick} className="masuk-button">
               Daftar
             </button>
           </div>

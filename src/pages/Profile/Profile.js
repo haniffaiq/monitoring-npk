@@ -1,12 +1,21 @@
 import React from "react";
 import "./style.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import ProfilePict from "../../Assets/images/cantiknyasyhdn.jpg";
 import BackArrow from "../../Assets/images/back-arrow.png";
+import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged, updatePassword } from "firebase/auth";
+import { getDatabase, ref, update, onValue } from "firebase/database";
+import firebaseConfig from "../../Firebase";
 
 function Profile(props) {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [newPassword, setNewPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,19 +25,67 @@ function Profile(props) {
   const togglePasswordConfirmVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-  const handleClick = () => {
-    setIsLoading(true);
+  const handleUpdate = async () => {
+    try {
+      setIsLoading(true);
 
-    // Your asynchronous task here
-    setTimeout(() => {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+      const database = getDatabase();
+      const usersRef = ref(database, `users/${currentUser.uid}`);
+      const updates = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+      };
+
+      await update(usersRef, updates);
+
+      if (newPassword) {
+        await updatePassword(currentUser, newPassword);
+      }
+
+      console.log("Data updated successfully");
+
       setIsLoading(false);
-    }, 2000);
+    } catch (error) {
+      console.log("Error updating data:", error);
+      setIsLoading(false);
+    }
   };
+  const handleBackOnClick = () => {
+    navigate("/homepage");
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const { uid, email } = currentUser;
+        const database = getDatabase();
+        const usersRef = ref(database, `users/${uid}`);
+        onValue(usersRef, (snapshot) => {
+          const userData = snapshot.val();
+          setUser({ ...userData, email });
+        });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  if (!user) {
+    return null; // Tidak ada pengguna yang login, tampilkan apa pun yang sesuai dengan kebutuhan Anda
+  }
+
   return (
     <div className="profile-main-container">
       <div className="profile-content-container">
         <div className="tombol-back-content">
-          <button>
+          <button onClick={handleBackOnClick}>
             <img src={BackArrow} className="back-arrow-icon" />
           </button>
 
@@ -46,14 +103,36 @@ function Profile(props) {
                 <label htmlFor="input-email">Nama Depan</label>
                 <label htmlFor="input-email">Nama Belakang</label>
               </div>
-              <div className="regist-name">
-                <input type="text" id="input-email" placeholder="Nama Depan" />
-                <input type="text" id="input-email" placeholder="Nama Belakang" />
+              <div className="regist-name-profile">
+                <input
+                  type="text"
+                  id="input-nama-depan"
+                  placeholder="Nama Depan"
+                  value={user ? user.firstName : ""}
+                  onChange={(e) =>
+                    setUser((prevUser) => ({
+                      ...prevUser,
+                      firstName: e.target.value,
+                    }))
+                  }
+                />
+                <input
+                  type="text"
+                  id="input-nama-belakang"
+                  placeholder="Nama Belakang"
+                  value={user ? user.lastName : ""}
+                  onChange={(e) =>
+                    setUser((prevUser) => ({
+                      ...prevUser,
+                      lastName: e.target.value,
+                    }))
+                  }
+                />
               </div>
               <div className="password-profile-container">
                 <label htmlFor="input-password">Password</label>
                 <div className="password-input-wrapper">
-                  <input type={showPassword ? "text" : "password"} id="input-password" placeholder="Minimal 8 Karakter" />
+                  <input type={showPassword ? "text" : "password"} id="input-password" placeholder="Minimal 6 Karakter" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                   <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} onClick={togglePasswordVisibility} />
                 </div>
 
@@ -83,7 +162,7 @@ function Profile(props) {
                 <button className="button-batal">Hapus Foto Profil</button>
               </div>
             </div>
-            <button className="button-simpan" disabled={isLoading} onClick={handleClick}>
+            <button className="button-simpan" disabled={isLoading} onClick={handleUpdate}>
               {isLoading ? (
                 <div className="spinner-container">
                   <div className="spinner"></div>
