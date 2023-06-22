@@ -147,7 +147,7 @@ function NPKChart(props) {
     };
 
     return (
-        <div className='grid grid-rows-2 gap-2'>
+        <div className='grid grid-rows-2 gap-8'>
             {/* Bagian Chart */}
             <div className="grid grid-rows-6 gap-4 bg-gray-900 rounded-xl p-5 card-container">
                 <div className="grid grid-cols-5 gap-4">
@@ -269,7 +269,7 @@ function NPKChart(props) {
                 </div>
             </div>
             {/* Bagian Tabel dan Prediksi */}
-            <div className="grid grid-cols-3 gap-4 rounded-xl p-5">
+            <div className="grid grid-cols-3 gap-10 rounded-xl p-5">
                 <div className='card-container rounded-xl p-5 inline-flex items-center justify-center text-grafik'>
                     <p className='text-white'>Prediksi Here</p>
                 </div>

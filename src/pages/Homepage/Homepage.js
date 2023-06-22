@@ -9,7 +9,6 @@ import CalendarComponents from "../../components/Calendar/Calendar";
 import MemberProfile1 from "./../../Assets/images/Profile.webp";
 import Cabai from "./../../Assets/images/cabai.webp";
 import Logo from "./../../Assets/images/Logo Tsuki.png";
-import ProgressBar from "../../components/ProgressBar/ProgressBar";
 
 function Homepage(props) {
   function Header() {
@@ -27,7 +26,7 @@ function Homepage(props) {
   }
   function Content() {
     return (
-      <div className="grid grid-flow-row-dense gap-1 md:py-10">
+      <div className="grid grid-flow-row-dense gap-8 md:py-10">
         <div className="grid grid-flow-row-dense grid-cols-3 gap-1 md:py-5 md:px-5">
           {/* Box Kiri */}
           <div className="p-6 col-span-2 grid grid-flow-row auto-rows-max gap-2 mr-10">
@@ -58,7 +57,7 @@ function Homepage(props) {
         </div>
         <NPKChart />
         <Countdown />
-        <CalendarComponents />
+        <CalendarComponents/>
       </div>
     );
   }
