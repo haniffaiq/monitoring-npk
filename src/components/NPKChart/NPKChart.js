@@ -66,21 +66,18 @@ function NPKChart(props) {
   //   const [activeLine, setActiveLine] = useState("line1");
   //   const latestData = data.slice(-48);
 
-  //   const CustomizedXAxisTick = (props) => {
-  //     const { x, y, payload, angle, fontSize, textAnchor, dy, dx } = props;
-  //     const date = moment(payload.value).format("DD MMM YYYY");
-  //     const time = moment(payload.value).format("HH:mm");
-  //     return (
-  //       <g transform={`translate(${x},${y})`}>
-  //         <text x={dx} y={dy} dy={16} textAnchor={textAnchor} fontSize={fontSize} transform={`rotate(${angle})`} fill="#666">
-  //           <tspan x="0">{time}</tspan>
-  //           <tspan x="0" dy="1.2em">
-  //             {date}
-  //           </tspan>
-  //         </text>
-  //       </g>
-  //     );
-  //   };
+    return (
+        <div className='grid grid-rows-2 gap-2'>
+            {/* Bagian Chart */}
+            <div className="grid grid-rows-6 gap-4 bg-gray-900 rounded-xl p-5 card-container">
+                <div className="grid grid-cols-5 gap-4">
+                    <div className="grid grid-cols-5">
+                        <div class="w-8 h-8 rounded-full mt-5 bg-red-600"></div>
+                        <div class="w-8 h-8 rounded-full mt-5 bg-green-500"></div>
+                    </div>
+                    <div>
+                        {/* TO DO */}
+                    </div>
 
   //   // Code untuk table
   //   const [chartColors, setChartColors] = useState({});
@@ -196,27 +193,18 @@ function NPKChart(props) {
   //             <p className="text-grafik">Grafik Hasil Pengamatan</p>
   //           </div>
 
-  //           <div className="grid grid-cols-2 gap-2 col-span-2">
-  //             <Dropdown />
-  //           </div>
-  //         </div>
-  //         <div class="row-span-4">
-  //           <ResponsiveContainer width="100%" height="100%">
-  //             <LineChart
-  //               width={200}
-  //               height={100}
-  //               data={latestData}
-  //               syncId="id"
-  //               margin={{
-  //                 top: 20,
-  //                 right: 20,
-  //                 left: 20,
-  //                 bottom: 25,
-  //               }}
-  //             >
-  //               <XAxis dataKey={(d) => `${d.date} ${d.time}`} interval={2} tick={<CustomizedXAxisTick angle={0} fontSize={10} textAnchor="end" dy={0} dx={0} />} />
-  //               <YAxis />
-  //               <Tooltip />
+                </div>
+            </div>
+            {/* Bagian Tabel dan Prediksi */}
+            <div className="grid grid-cols-3 gap-4 rounded-xl p-5">
+                <div className='card-container rounded-xl p-5 inline-flex items-center justify-center text-grafik'>
+                    <p className='text-white'>Prediksi Here</p>
+                </div>
+                <div className='card-container rounded-xl p-10 col-span-2 inline-flex  items-center justify-center '>
+                    <Table />
+                </div>
+            </div>
+        </div>
 
   //               <Line type="monotone" dataKey={graphChoose} stroke={colortLine} activeDot={{ r: 8 }} strokeWidth={3} />
   //             </LineChart>
