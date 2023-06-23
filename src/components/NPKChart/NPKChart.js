@@ -71,10 +71,10 @@ function NPKChart(props) {
           const dataVal = snapshot.val();
           const transformedData = transformData(dataVal); // Menggunakan fungsi transformData di sini
           setData(transformedData);
-          console.log("Data dari Firebase:", transformedData);
+          // console.log("Data dari Firebase:", transformedData);
         },
         (error) => {
-          console.log("Error fetching data:", error);
+          console.log("Error fetching data NPK CHART:", error);
         }
       );
     };
