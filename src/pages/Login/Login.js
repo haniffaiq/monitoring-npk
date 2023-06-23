@@ -35,7 +35,7 @@ function Login(props) {
     console.log("Button clicked!");
   };
   const handleClick2 = () => {
-    console.log("Button clicked!");
+    navigate("/registrasi");
   };
   return (
     <div className="mainContainerLogin">

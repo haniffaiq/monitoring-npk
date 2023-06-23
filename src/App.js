@@ -11,25 +11,25 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // const database = getDatabase();
 
 function App() {
-  //   const [data, setData] = useState([]);
-  //   useEffect(() => {
-  //     const fetchData = () => {
-  //       const predictionsRef = ref(database, "w5JQlOfIKqPBIfxqmmcyK1QD6zn2");
-  //       onValue(
-  //         predictionsRef,
-  //         (snapshot) => {
-  //           const dataVal = snapshot.val();
-  //           setData(dataVal);
-  //           console.log("Data dari Firebase:", dataVal);
-  //         },
-  //         (error) => {
-  //           console.log("Error fetching data:", error);
-  //         }
-  //       );
-  //     };
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     const predictionsRef = ref(database, "w5JQlOfIKqPBIfxqmmcyK1QD6zn2");
+  //     onValue(
+  //       predictionsRef,
+  //       (snapshot) => {
+  //         const dataVal = snapshot.val();
+  //         setData(dataVal);
+  //         console.log("Data dari Firebase:", dataVal);
+  //       },
+  //       (error) => {
+  //         console.log("Error fetching data:", error);
+  //       }
+  //     );
+  //   };
 
-  //     fetchData();
-  //   }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Router>
