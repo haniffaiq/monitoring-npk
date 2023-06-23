@@ -40,7 +40,7 @@ function Dropdown() {
     try {
       await auth.signOut();
       console.log("User berhasil logout");
-      navigate("/login");
+      navigate("/");
 
       // Lakukan penanganan setelah logout berhasil, misalnya mengarahkan pengguna ke halaman lain
     } catch (error) {

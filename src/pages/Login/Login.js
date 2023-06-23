@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Ilust from "../../Assets/images/ilust.png";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login(props) {
   const navigate = useNavigate();
@@ -26,11 +27,31 @@ function Login(props) {
         // Login berhasil, akses data pengguna melalui userCredential.user
         const user = userCredential.user;
         console.log("Login berhasil. ID pengguna:", user.uid);
+        toast.success("Login berhasil", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         navigate("/homepage");
       })
       .catch((error) => {
         // Terjadi kesalahan saat login, tangani error di sini
         console.log("Error saat login:", error.message);
+        toast.error("Error saat login!,Pastikan Email & Password Kamu Sudah Benar", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
     console.log("Button clicked!");
   };
@@ -63,6 +84,7 @@ function Login(props) {
             <button onClick={handleLogin} className="masuk-button-login">
               Masuk
             </button>
+            <ToastContainer />
             <div className="separator-container">
               <hr className="separator-line" />
               <span className="separator-text">Atau</span>

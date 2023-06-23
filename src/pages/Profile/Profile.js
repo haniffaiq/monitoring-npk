@@ -7,8 +7,12 @@ import ProfilePict from "../../Assets/images/cantiknyasyhdn.jpg";
 import BackArrow from "../../Assets/images/back-arrow.png";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged, updatePassword } from "firebase/auth";
-import { getDatabase, ref, update, onValue } from "firebase/database";
+import { getDatabase, ref as databaseRef, update, onValue } from "firebase/database";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import firebaseConfig from "../../Firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-modal";
 
 function Profile(props) {
   const navigate = useNavigate();
@@ -18,6 +22,9 @@ function Profile(props) {
   const [lastName, setLastName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -25,6 +32,13 @@ function Profile(props) {
   const togglePasswordConfirmVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
+  const handleImageChange = (event) => {
+    const image = event.target.files[0];
+    setSelectedImage(image);
+    setPreviewImage(URL.createObjectURL(image));
+  };
+
   const handleUpdate = async () => {
     try {
       setIsLoading(true);
@@ -32,7 +46,7 @@ function Profile(props) {
       const auth = getAuth();
       const currentUser = auth.currentUser;
       const database = getDatabase();
-      const usersRef = ref(database, `users/${currentUser.uid}`);
+      const usersRef = databaseRef(database, `users/${currentUser.uid}`);
       const updates = {
         firstName: user.firstName,
         lastName: user.lastName,
@@ -44,16 +58,99 @@ function Profile(props) {
         await updatePassword(currentUser, newPassword);
       }
 
-      console.log("Data updated successfully");
+      // Jika gambar dipilih, unggah ke Firebase Storage
+      if (selectedImage) {
+        const storage = getStorage();
+        const storageReference = storageRef(storage, `images/${currentUser.uid}`);
+        await uploadBytes(storageReference, selectedImage);
+        // Dapatkan URL gambar yang diunggah
+        const downloadURL = await getDownloadURL(storageReference);
+        // Tambahkan URL gambar ke field users
+        await update(usersRef, { profilePicture: downloadURL });
+      }
+      toast.success("Data updated successfully!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
 
       setIsLoading(false);
     } catch (error) {
-      console.log("Error updating data:", error);
+      toast.error("Error updating data!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      console.log("Error gara-gara?", error);
       setIsLoading(false);
     }
   };
+
   const handleBackOnClick = () => {
     navigate("/homepage");
+  };
+
+  const handleButtonPickImageClick = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.addEventListener("change", handleImageChange);
+    fileInput.click();
+  };
+
+  const handleDeleteProfilePicture = async () => {
+    try {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+      const storage = getStorage();
+      const storageReference = storageRef(storage, `images/${currentUser.uid}`);
+      await deleteObject(storageReference);
+
+      // Update field 'profilePicture' in the database to null or empty string
+      const database = getDatabase();
+      const usersRef = databaseRef(database, `users/${currentUser.uid}`);
+      const updates = {
+        profilePicture: null, // or use empty string if preferred
+      };
+      await update(usersRef, updates);
+
+      setUser((prevUser) => ({
+        ...prevUser,
+        profilePicture: null, // or use empty string if preferred
+      }));
+
+      toast.success("Profile picture deleted successfully!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } catch (error) {
+      toast.error("Error deleting profile picture!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   useEffect(() => {
@@ -62,7 +159,7 @@ function Profile(props) {
       if (currentUser) {
         const { uid, email } = currentUser;
         const database = getDatabase();
-        const usersRef = ref(database, `users/${uid}`);
+        const usersRef = databaseRef(database, `users/${uid}`);
         onValue(usersRef, (snapshot) => {
           const userData = snapshot.val();
           setUser({ ...userData, email });
@@ -152,14 +249,22 @@ function Profile(props) {
               <p>Disini anda dapat mengubah profil foto untuk mwakili identitas diri anda. Perubahan akan ditampilkan untuk dilihat oleh pengguna lain.</p>
             </div>
             <div class="grid grid-rows-3 grid-flow-col gap-4 profile-pict-section-cont">
-              <div class="row-span-3 ... picture-container">
-                <img src={ProfilePict} className="profile-image" />
+              <div className="row-span-3 ... picture-container">
+                {previewImage ? (
+                  <img src={previewImage} alt="Preview" className="profile-image" />
+                ) : (
+                  <>{user.profilePicture ? <img src={user.profilePicture} alt="Profile" className="profile-image" /> : <img src={ProfilePict} alt="Default User" className="profile-image" />}</>
+                )}
               </div>
               <div class="col-span-2 ...">
-                <button className="button-unggah">Unggah Foto Profil</button>
+                <button className="button-unggah" onClick={handleButtonPickImageClick}>
+                  Unggah Foto Profil
+                </button>
               </div>
               <div class="row-span-2 col-span-2 ...">
-                <button className="button-batal">Hapus Foto Profil</button>
+                <button className="button-batal" onClick={handleDeleteProfilePicture}>
+                  Hapus Foto Profil
+                </button>
               </div>
             </div>
             <button className="button-simpan" disabled={isLoading} onClick={handleUpdate}>
@@ -171,6 +276,7 @@ function Profile(props) {
                 "Simpan"
               )}
             </button>
+            <ToastContainer />
           </div>
         </div>
       </div>
