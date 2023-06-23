@@ -36,7 +36,7 @@ function Prediksi() {
                 {/* Bagian Kiri */}
                 <div className="flex justify-between text-white">
                     <div className="flex h-16 py-5">
-                        <p className='text-sensor text-white'>Prediksi Minggu Depan</p>
+                        <p className='text-sensor text-white'>History Minggu Lalu</p>
                     </div>
 
                     <div className="rounded-md px-2 py-1 bg-Base1 text-selector">
