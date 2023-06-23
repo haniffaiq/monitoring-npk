@@ -8,7 +8,7 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// const database = getDatabase();
+const database = getDatabase();
 
 function App() {
   // const [data, setData] = useState([]);
@@ -19,8 +19,9 @@ function App() {
   //       predictionsRef,
   //       (snapshot) => {
   //         const dataVal = snapshot.val();
-  //         setData(dataVal);
-  //         console.log("Data dari Firebase:", dataVal);
+  //         const transformedData = transformData(dataVal); // Menggunakan fungsi transformData di sini
+  //         setData(transformedData);
+  //         console.log("Data dari Firebase:", transformedData);
   //       },
   //       (error) => {
   //         console.log("Error fetching data:", error);
@@ -30,6 +31,29 @@ function App() {
 
   //   fetchData();
   // }, []);
+
+  // function transformData(data1) {
+  //   const transformedData = [];
+
+  //   for (const key in data1) {
+  //     const item = data1[key];
+  //     const [date, time] = item.Timestamp.split('T');
+  //     const [hours, minutes] = time.split(':');
+
+  //     transformedData.push({
+  //       id: transformedData.length + 1,
+  //       date: date,
+  //       time: `${hours}:${minutes}`,
+  //       Nitrogen: parseInt(item.N),
+  //       Pospor: parseInt(item.P),
+  //       Kalium: parseInt(item.K),
+  //       pH: parseFloat(item.pH),
+  //       Kelembapan: parseInt(item.Moisture)
+  //     });
+  //   }
+
+  //   return transformedData;
+  // }
 
   return (
     <Router>
