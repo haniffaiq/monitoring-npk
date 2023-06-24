@@ -55,6 +55,26 @@ function App() {
   //   return transformedData;
   // }
 
+  useEffect(() => {
+    const database = getDatabase();
+    const prediksiRef = ref(database, "prediksi");
+
+    const onDataChange = (snapshot) => {
+      const data = snapshot.val();
+      console.log("nih data prediksi", data);
+    };
+
+    // Mendengarkan perubahan data pada prediksiRef
+    const unsubscribe = onValue(prediksiRef, onDataChange);
+
+    // Cleanup fungsi ketika komponen tidak lagi digunakan
+    return () => {
+      // Hentikan mendengarkan perubahan data
+      // saat komponen tidak lagi digunakan
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <Router>
       <Routes>

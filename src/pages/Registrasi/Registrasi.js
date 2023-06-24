@@ -8,6 +8,7 @@ import Ilust from "../../Assets/images/ilust.png";
 import { Link } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, push, set } from "firebase/database";
+import { ToastContainer, toast } from "react-toastify";
 
 import firebaseConfig from "../../Firebase";
 
@@ -42,14 +43,35 @@ function Registrasi(props) {
           email: email,
           firstName: firstName,
           lastName: lastName,
+          profilePicture: null,
         };
         set(userRef, userData);
 
         console.log("Registrasi berhasil. ID pengguna:", userId);
-        navigate("/login");
+        toast.success("Registrasi berhasil!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/");
       })
       .catch((error) => {
         console.log("Error saat registrasi:", error.message);
+        toast.error("Error saat registrasi! Pastikan data diri & Password sudah benar", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
     console.log("Button clicked!");
   };
