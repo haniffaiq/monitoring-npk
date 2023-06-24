@@ -192,6 +192,8 @@ function NPKChart(props) {
     );
   };
 
+  const [prediksi, setPrediksi] = useState({hasil: 'baik', waktu: '00:00'})
+
   return (
     <div className='grid grid-rows-2 gap-2'>
       {/* Bagian Chart */}
@@ -317,7 +319,7 @@ function NPKChart(props) {
       {/* Bagian Tabel dan Prediksi */}
       <div className="grid grid-cols-3 gap-4 rounded-xl p-5">
         <div className='card-container rounded-xl p-5 inline-flex items-center justify-center text-grafik'>
-          <p className='text-white'>Prediksi Here</p>
+          <p className='text-white'>pada jam {prediksi['waktu']} diprediksi bahwa kondisi nilai sensor akan {prediksi['hasil']}</p>
         </div>
         <div className='card-container rounded-xl p-10 col-span-2 inline-flex  items-center justify-center '>
           <Table />
