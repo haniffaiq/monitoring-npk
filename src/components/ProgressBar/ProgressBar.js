@@ -132,7 +132,7 @@ const ProgressBar = () => {
         <div className="grid grid-flow-row items-center">
             <div className="flex justify-between text-white text-opacity-50 py-4 ">
                 <div className="flex px-10 py-5 text-judul">
-                    <p>Highlight hai Ini</p>
+                    <p>Highlight Hari Ini</p>
                 </div>
 
                 <div className="flex h-16 px-10 py-5">
