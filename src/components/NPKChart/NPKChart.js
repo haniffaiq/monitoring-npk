@@ -192,8 +192,48 @@ function NPKChart(props) {
     );
   };
 
-  const [prediksi, setPrediksi] = useState({hasil: 'baik', waktu: '00:00'})
+  const [prediksi, setPrediksi] = useState(
+    {
+      k: "0",
+      kepuk: 0,
+      n: "0",
+      p: "0",
+      tanggal: "2023-01-01",
+      jam: "00:00"
+    })
 
+  function formatTanggalWaktu(data) {
+    // Memisahkan tanggal dan waktu
+    const [tanggal, waktu] = data.waktu.split(' ');
+
+    // Mengubah nama properti waktu menjadi tanggal dan jam
+    data.tanggal = tanggal;
+    data.jam = waktu.substr(0, 5);
+    delete data.waktu;
+
+    return data
+  }
+  useEffect(() => {
+    const database = getDatabase();
+    const prediksiRef = ref(database, "prediksi");
+
+    const onDataChange = (snapshot) => {
+      const data = snapshot.val();
+      const newData = formatTanggalWaktu(data);
+      console.log("nih data prediksi", newData);
+      setPrediksi(newData)
+    };
+
+    // Mendengarkan perubahan data pada prediksiRef
+    const unsubscribe = onValue(prediksiRef, onDataChange);
+
+    // Cleanup fungsi ketika komponen tidak lagi digunakan
+    return () => {
+      // Hentikan mendengarkan perubahan data
+      // saat komponen tidak lagi digunakan
+      unsubscribe();
+    };
+  }, []);
   return (
     <div className='grid grid-rows-2 gap-2'>
       {/* Bagian Chart */}
@@ -319,7 +359,11 @@ function NPKChart(props) {
       {/* Bagian Tabel dan Prediksi */}
       <div className="grid grid-cols-3 gap-4 rounded-xl p-5">
         <div className='card-container rounded-xl p-5 inline-flex items-center justify-center text-grafik'>
-          <p className='text-white'>pada jam {prediksi['waktu']} diprediksi bahwa kondisi nilai sensor akan {prediksi['hasil']}</p>
+          <p className='text-white'>pada pukul {prediksi['jam']} WIB bahwa tanaman anda akan membutuhkan pupuk sebanyak {prediksi['kepuk']}. <br></br> 
+          Dengan nilai NPK adalah :
+          <br></br>N : {prediksi['n']}
+          <br></br>P : {prediksi['p']}
+          <br></br>K : {prediksi['k']}</p>
         </div>
         <div className='card-container rounded-xl p-10 col-span-2 inline-flex  items-center justify-center '>
           <Table />
