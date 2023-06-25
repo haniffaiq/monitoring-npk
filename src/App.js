@@ -6,9 +6,11 @@ import Homepage from "./pages/Homepage/Homepage";
 import Registrasi from "./pages/Registrasi/Registrasi";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const database = getDatabase();
+const auth = getAuth();
 
 function App() {
   // const [data, setData] = useState([]);
@@ -55,33 +57,41 @@ function App() {
   //   return transformedData;
   // }
 
+  // useEffect(() => {
+  //   const database = getDatabase();
+  //   const prediksiRef = ref(database, "prediksi");
+
+  //   const onDataChange = (snapshot) => {
+  //     const data = snapshot.val();
+  //     console.log("nih data prediksi", data);
+  //   };
+
+  //   // Mendengarkan perubahan data pada prediksiRef
+  //   const unsubscribe = onValue(prediksiRef, onDataChange);
+
+  //   // Cleanup fungsi ketika komponen tidak lagi digunakan
+  //   return () => {
+  //     // Hentikan mendengarkan perubahan data
+  //     // saat komponen tidak lagi digunakan
+  //     unsubscribe();
+  //   };
+  // }, []);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    const database = getDatabase();
-    const prediksiRef = ref(database, "prediksi");
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user);
+    });
 
-    const onDataChange = (snapshot) => {
-      const data = snapshot.val();
-      console.log("nih data prediksi", data);
-    };
-
-    // Mendengarkan perubahan data pada prediksiRef
-    const unsubscribe = onValue(prediksiRef, onDataChange);
-
-    // Cleanup fungsi ketika komponen tidak lagi digunakan
-    return () => {
-      // Hentikan mendengarkan perubahan data
-      // saat komponen tidak lagi digunakan
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
-
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route path="/homepage" element={<Homepage />} />
-        <Route path="/registrasi" element={<Registrasi />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={isLoggedIn ? <Navigate to="/homepage" /> : <Login />} />
+        <Route path="/homepage" element={isLoggedIn ? <Homepage /> : <Navigate to="/" />} />
+        <Route path="/registrasi" element={isLoggedIn ? <Navigate to="/homepage" /> : <Registrasi />} />
+        <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/" />} />
       </Routes>
     </Router>
   );

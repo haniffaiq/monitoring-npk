@@ -93,7 +93,6 @@
   gap: 20px;
   margin-left: -5px;
   margin-top: 10px;
-  
 }
 .regist-label-name {
   display: flex;
@@ -205,6 +204,13 @@
   width: 240px;
   margin-left: 40px;
 }
+.button-unggah:hover {
+  background: #45dc6f;
+  color: #fff;
+  font-family: "Gilroy-Regular";
+  font-size: 14px;
+  line-height: 16px;
+}
 .button-batal {
   background: #232323;
   border-radius: 15px;
@@ -215,6 +221,14 @@
   line-height: 16px;
   width: 240px;
   margin-left: 40px;
+}
+
+.button-batal:hover {
+  background-color: #ff4343;
+  color: #fff;
+  font-family: "Gilroy-Regular";
+  font-size: 14px;
+  line-height: 16px;
 }
 
 .button-simpan {
@@ -268,4 +282,88 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* buat ngatur style modal */
+.custom-modal {
+  /* Gaya khusus untuk elemen modal */
+  background-color: #1e1e1e;
+  position: fixed;
+  top: -480px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 646px; /* Atur sesuai kebutuhan */
+  height: 400px; /* Atur sesuai kebutuhan */
+  border-radius: 46px;
+}
+
+.custom-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8); /* Warna latar belakang semi-transparan */
+  backdrop-filter: blur(50px);
+}
+/* buat ngatur modal content */
+.modal-main-container-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+.modal-content-container-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-icon {
+  width: 90px;
+  height: 90px;
+}
+
+.hapus-txt {
+  color: #ff4343;
+  font-size: 35px;
+  line-height: 48.05px;
+  font-family: "Gilroy-Medium";
+  align-self: center;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.confirm-txt {
+  color: #ffff;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: "Gilroy-Regular";
+  font-weight: lighter;
+  margin-left: 20px;
+}
+.button-modal-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 35px;
+}
+.no-button {
+  width: 250px;
+  height: 70px;
+  border-radius: 15px;
+  color: #fff;
+  font-family: "Gilroy-Regular";
+}
+.no-button:hover {
+  background-color: #ff4343;
+  color: #fff;
+}
+.yes-button {
+  width: 250px;
+  height: 70px;
+  border-radius: 15px;
+  color: #fff;
+  font-family: "Gilroy-Regular";
+}
+.yes-button:hover {
+  background-color: #45dc6f;
+  color: #fff;
 }
