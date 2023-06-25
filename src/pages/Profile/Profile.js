@@ -13,11 +13,14 @@ import firebaseConfig from "../../Firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
+import CloseIcon from "../../Assets/images/close.png";
+import WarnIcon from "../../Assets/images/warning.png";
 
 function Profile(props) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -26,11 +29,29 @@ function Profile(props) {
   const [previewImage, setPreviewImage] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [modal1IsOpen, setModal1IsOpen] = useState(false);
+  const [modal2IsOpen, setModal2IsOpen] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const togglePasswordConfirmVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const openModal1 = () => {
+    setModal1IsOpen(true);
+  };
+
+  const closeModal1 = () => {
+    setModal1IsOpen(false);
+  };
+
+  const openModal2 = () => {
+    setModal2IsOpen(true);
+  };
+
+  const closeModal2 = () => {
+    setModal2IsOpen(false);
   };
 
   const handleImageChange = (event) => {
@@ -54,8 +75,58 @@ function Profile(props) {
 
       await update(usersRef, updates);
 
-      if (newPassword) {
+      if (newPassword == "" && confirmPassword == "") {
+        setIsLoading(false);
+        setModal2IsOpen(false);
+      }
+
+      if (newPassword != "" && confirmPassword == "") {
+        toast.error("Confirm Password harus di isi!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setIsLoading(false);
+        setModal2IsOpen(false);
+      }
+
+      if (newPassword == confirmPassword) {
         await updatePassword(currentUser, newPassword);
+        toast.success("Data updated successfully!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+        setIsLoading(false);
+        setModal2IsOpen(false);
+        navigate("/");
+      }
+
+      if (newPassword != confirmPassword) {
+        toast.error("Gagal!, Pastikan Password dan Confirm Password sama", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/profile");
+        setModal2IsOpen(false);
+        setIsLoading(false);
       }
 
       // Jika gambar dipilih, unggah ke Firebase Storage
@@ -67,19 +138,20 @@ function Profile(props) {
         const downloadURL = await getDownloadURL(storageReference);
         // Tambahkan URL gambar ke field users
         await update(usersRef, { profilePicture: downloadURL });
-      }
-      toast.success("Data updated successfully!", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+        toast.success("Data updated successfully!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
 
-      setIsLoading(false);
+        setIsLoading(false);
+        setModal2IsOpen(false);
+      }
     } catch (error) {
       toast.error("Error updating data!", {
         position: "top-center",
@@ -93,6 +165,7 @@ function Profile(props) {
       });
       console.log("Error gara-gara?", error);
       setIsLoading(false);
+      setModal2IsOpen(false);
     }
   };
 
@@ -129,7 +202,7 @@ function Profile(props) {
         profilePicture: null, // or use empty string if preferred
       }));
 
-      toast.success("Profile picture deleted successfully!", {
+      toast.success("Foto profile berhasil di hapus!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -139,8 +212,9 @@ function Profile(props) {
         progress: undefined,
         theme: "dark",
       });
+      setModal1IsOpen(false);
     } catch (error) {
-      toast.error("Error deleting profile picture!", {
+      toast.error("Error! Gagal menghapus foto profile", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -150,6 +224,7 @@ function Profile(props) {
         progress: undefined,
         theme: "dark",
       });
+      setModal1IsOpen(false);
     }
   };
 
@@ -180,12 +255,46 @@ function Profile(props) {
 
   return (
     <div className="profile-main-container">
+      <Modal isOpen={modal1IsOpen} onRequestClose={closeModal1} contentLabel="Modal 1" className="custom-modal" overlayClassName="custom-modal-overlay">
+        <div className="modal-main-container-1">
+          <div className="modal-content-container-1">
+            <img src={CloseIcon} className="close-icon" />
+            <p className="hapus-txt">Hapus Foto Profile</p>
+            <p className="confirm-txt">Apakah anda yakin ingin menghapus foto profile?</p>
+            <div className="button-modal-layout">
+              <button onClick={closeModal1} className="no-button">
+                Tidak
+              </button>
+              <button onClick={handleDeleteProfilePicture} className="yes-button">
+                Ya
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal isOpen={modal2IsOpen} onRequestClose={closeModal2} contentLabel="Modal 2" className="custom-modal" overlayClassName="custom-modal-overlay">
+        <div className="modal-main-container-1">
+          <div className="modal-content-container-1">
+            <img src={WarnIcon} className="close-icon" />
+            <p className="hapus-txt">Simpan Perubahan</p>
+            <p className="confirm-txt">Apakah anda yakin ingin menyimpan perubahan profile?</p>
+            <div className="button-modal-layout">
+              <button onClick={closeModal2} className="no-button">
+                Tidak
+              </button>
+              <button onClick={handleUpdate} className="yes-button">
+                Ya
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
       <div className="profile-content-container">
         <div className="tombol-back-content">
           <button onClick={handleBackOnClick}>
             <img src={BackArrow} className="back-arrow-icon" />
           </button>
-
           <p>Edit Profile</p>
         </div>
         <div className="separator-container">
@@ -236,7 +345,7 @@ function Profile(props) {
                 <div className="confirm-pass-container">
                   <label htmlFor="input-password">Konfirmasi Password</label>
                   <div className="password-input-wrapper">
-                    <input type={showConfirmPassword ? "text" : "password"} id="input-password" placeholder="Minimal 8 Karakter" />
+                    <input type={showConfirmPassword ? "text" : "password"} id="input-password" placeholder="Minimal 6 Karakter" value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)} />
                     <FontAwesomeIcon icon={showConfirmPassword ? faEye : faEyeSlash} onClick={togglePasswordConfirmVisibility} />
                   </div>
                 </div>
@@ -262,12 +371,12 @@ function Profile(props) {
                 </button>
               </div>
               <div class="row-span-2 col-span-2 ...">
-                <button className="button-batal" onClick={handleDeleteProfilePicture}>
+                <button className="button-batal" onClick={openModal1}>
                   Hapus Foto Profil
                 </button>
               </div>
             </div>
-            <button className="button-simpan" disabled={isLoading} onClick={handleUpdate}>
+            <button className="button-simpan" disabled={isLoading} onClick={openModal2}>
               {isLoading ? (
                 <div className="spinner-container">
                   <div className="spinner"></div>
